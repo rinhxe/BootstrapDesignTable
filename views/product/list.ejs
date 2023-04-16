@@ -1,0 +1,185 @@
+<%- include('../inc/top') %> 
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" style="margin-top: 10px">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="/product">Product</a></li>
+         
+            
+          </ol>
+        </nav>
+        <div class="col-12 col-md-1"></div>
+        <!-- Main -->
+        <div class="bg-light-subtle col-12 col-sm-12 col-md-12">
+          <div class="col-12 card">
+            <!-- Tittle -->
+            <h1 style="margin-left: 13px; margin-top: 10px">Product List</h1>
+            <!-- Toolbar -->
+            <div
+              class="btn-toolbar mb-3"
+              style="display: flex; justify-content: center"
+              role="toolbar"
+              aria-label="Toolbar with button groups"
+            >
+              <div class="btn-group me-2" role="group" aria-label="First group">
+                <button
+                  type="button"
+                  
+                  class="btn btn-outline-secondary"
+                >
+                  <a
+                    href="/product/add"
+                    style="text-decoration: none; color: black"
+                    >Add</a
+                  >
+                </button>
+              </div>
+              <div class="input-group">
+                <div class="input-group-text" id="btnGroupAddon">@</div>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Input here"
+                  aria-label="Input group example"
+                  aria-describedby="btnGroupAddon"
+                />
+              </div>
+              <div class="btn-group me-2" role="group" aria-label="First group">
+                <button
+                  type="button"
+                  style="margin-left: 10px"
+                  class="btn btn-outline-secondary">
+                  Find
+                </button>
+              </div>
+              <div class="btn-group me-2" role="group" aria-label="First group">
+                <button type="button" class="btn btn-outline-secondary">
+                  <div class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      >Catalogue</a>
+                    <ul class="dropdown-menu" style="list-style: none">
+                      <% listCat.forEach((child)=> { %>
+                        <li><a class="dropdown-item" href="#"><%= child.name%></a></li>
+                      <%  }); %>  
+                    </ul>
+                  </div>
+                </button>
+              </div>
+              <div class="input-group">
+                <div class="input-group-text" id="btnGroupAddon">$</div>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Input price here"
+                  aria-label="Input group example"
+                  aria-describedby="btnGroupAddon"
+                />
+              </div>
+              <div class="btn-group me-2" style="margin-left: 10px;" role="group" aria-label="First group">
+                <button type="button" class="btn btn-outline-secondary">
+                  <div class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      >Compare</a
+                    >
+                    <ul class="dropdown-menu" style="list-style: none">
+                      <li><a class="dropdown-item" href="#">More</a></li>
+                      <li><a class="dropdown-item" href="#">Less</a></li>
+                      <li><a class="dropdown-item" href="#">Equal</a></li>
+                    </ul>
+                  </div>
+                </button>
+              </div>
+            </div>
+            <div class="card scrollmenu" style="margin: 10px">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">File Image</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Catalogue</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%  objProductList.forEach( (child)  => { %>
+                    <tr>
+                      <th style="vertical-align: middle;" scope="row"><%= child._id %></th>
+                      <td style="vertical-align: middle;"><%= child.name %></td>
+                      <td style="vertical-align: middle;"><%= child.price %></td>
+                      
+                      <td style="vertical-align: middle; margin-left:20px">
+                          <img src="uploads/dress1.jpg" 
+                            style="height: 100px;width: auto;"alt="Dress"></td>
+                      <td style="vertical-align: middle;"><%= child.description %></td>
+                      <!-- <% if(typeof(child.id_catalogue.name)!='undefine'){ %> -->
+                        <td style="vertical-align: middle;"> 
+                          <%= child.id_catalogue.name%>
+                          
+                        </td>
+                        <!-- <% } %> -->
+                        <td style="vertical-align: middle;">
+                          <a href="/product/detail/<%= child._id %>">
+                          <button type="button" class="btn btn-outline-success">
+                            Details
+                          </button>
+                        </a>
+                        </td>
+                      
+                      <td style="vertical-align: middle;">
+                        <a href="/product/edit/<%= child._id %>">
+                        <button type="button" class="btn btn-outline-success">
+                          Edit
+                        </button>
+                      </a>
+                      </td>
+                      <td style="vertical-align: middle;">
+                        
+                          <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Delete
+                          </button>
+                        
+                    
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirm delete this item</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                Are you sure ?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                <a href="/product/delete/<%= child._id %>"><button type="button" class="btn btn-primary">Yes</button></a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <%  }); %>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-1"></div>
+        <!-- Footer -->
+        <%- include('../inc/bottom') %>     

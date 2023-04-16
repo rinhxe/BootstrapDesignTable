@@ -1,0 +1,49 @@
+<%- include('../inc/top') %> 
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" style="margin-top: 10px">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/users">Users</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add User</li>
+          </ol>
+        </nav>
+        <div class=" col-12 col-md-2"></div>
+        <!-- Main -->
+        <div class="bg-light-subtle col-12 col-sm-8 col-md-8">
+          <div class="col-12 card scrollmenu">
+            <!-- Tittle -->
+            <h1 style="margin-left: 13px;margin-top: 10px;">Add new user</h1>
+            <!-- Form -->
+            <form class="card" style="margin: 10px;padding: 10px;" method="POST">
+              
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+              </div>
+              <div class="mb-3">
+                <label for="passwd" class="form-label">Password</label>
+                <input type="password" class="form-control" id="passwd" name="passwd" required>
+              </div>
+              <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select class="form-select" id="role" name="role">
+                  
+                  <option value="admin" selected >Admin</option>
+                  <option value="user" >User</option>
+                  
+                </select>
+
+              </div>
+              
+              <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+          </div>
+          
+        </div>
+        <div class="col-12 col-sm-4 col-md-2"></div>
+        <!-- Footer -->
+        <%- include('../inc/bottom') %>     

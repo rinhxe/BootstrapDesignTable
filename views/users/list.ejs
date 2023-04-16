@@ -1,0 +1,137 @@
+<%- include('../inc/top') %> 
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" style="margin-top: 10px">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="/users">Users</a></li>
+          </ol>
+        </nav>
+        <div class="col-12 col-md-1"></div>
+        <!-- Main -->
+        <div class="bg-light-subtle col-12 col-sm-12 col-md-12">
+          <div class="col-12 card">
+            <!-- Tittle -->
+            <h1 style="margin-left: 13px; margin-top: 10px">Users List</h1>
+            <!-- Toolbar -->
+            <div
+              class="btn-toolbar mb-3"
+              style="display: flex; justify-content: center"
+              role="toolbar"
+              aria-label="Toolbar with button groups"
+            >
+              <div class="btn-group me-2" role="group" aria-label="First group">
+                <button
+                  type="button"
+                  
+                  class="btn btn-outline-secondary"
+                >
+                  <a
+                    href="users/add"
+                    style="text-decoration: none; color: black"
+                    >Add</a
+                  >
+                </button>
+              </div>
+              <div class="input-group">
+                <div class="input-group-text" id="btnGroupAddon">@</div>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Input username here"
+                  aria-label="Input group example"
+                  aria-describedby="btnGroupAddon"
+                />
+              </div>
+              <div class="btn-group me-2" role="group" aria-label="First group">
+                <button
+                  type="button"
+                  style="margin-left: 10px"
+                  class="btn btn-outline-secondary"
+                >
+                  Find
+                </button>
+              </div>
+              <div class="btn-group me-2" role="group" aria-label="First group">
+                <button type="button" class="btn btn-outline-secondary">
+                  <div class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      >Role</a
+                    >
+                    <ul class="dropdown-menu" style="list-style: none">
+                      <li><a class="dropdown-item" href="#">Admin</a></li>
+                      <li><a class="dropdown-item" href="#">User</a></li>
+                    </ul>
+                  </div>
+                </button>
+              </div>
+              <div class="btn-group me-2" role="group" aria-label="First group">
+                
+              </div>
+            </div>
+            <div class="card scrollmenu" style="margin: 10px">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Role</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%  objUserList.forEach( (child)  => { %>
+                    <tr>
+                      <th scope="row"><%=child.id%></th>
+                      <td><%=child.username%></td>
+                      <td><%=child.email%></td>
+                      <td><%=child.role%></td>
+                        
+                      
+                        <td style="vertical-align: middle;">
+                        <%
+                          var ac ='';
+                          if(child.username == 'admin') ac='disabled'
+                        %>
+
+                          <button  type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"  <%=ac%> >
+                            Delete
+                          </button>
+                        
+                    
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirm delete this item</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                Are you sure ?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                <a href="/users/delete/<%=child.id%>"><button type="button" class="btn btn-primary">Yes</button></a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                  <%  }); %>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-1"></div>
+        <!-- Footer -->
+        <%- include('../inc/bottom') %>     

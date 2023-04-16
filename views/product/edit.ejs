@@ -1,0 +1,56 @@
+<%- include('../inc/top') %> 
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" style="margin-top: 10px">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/product">Product</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="/product/edit">Edit Product</a></li>
+            
+          </ol>
+        </nav>
+        <div class=" col-12 col-md-2"></div>
+        <!-- Main -->
+        <div class="bg-light-subtle col-12 col-sm-8 col-md-8">
+          <div class="col-12 card scrollmenu">
+            <!-- Tittle -->
+            <h1 style="margin-left: 13px;margin-top: 10px;">Edit Product </h1>
+            <!-- Form -->
+            <form class="card" action="" style="margin: 10px;padding: 10px;" method="POST" >
+            <!-- <form class="card" action="" style="margin: 10px;padding: 10px;" method="POST" enctype="multipart/form-data"> -->
+              <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" name="name" value="<%= objProduct.name %>" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Price</label>
+                <input type="number" class="form-control" name="price"value="<%= objProduct.price %>" required >
+              </div>
+              <div class="mb-3">
+                <label class="form-label">File Image</label>
+                <input class="form-control" type="file" name="file_image">
+              </div>
+              <div class="mb-3 form-floating">
+                <textarea class="form-control" placeholder="Description" name="description" id="description" style="height: 100px" ><%=objProduct.décription%></textarea>
+                <label for="description">Description</label>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Catalogue</label>
+                <select class="form-select" name="id_catalogue">
+                  <%listCat.forEach((child)=>{ %>
+                    <% 
+                      let selected = '';
+                      if(String(child.id) == String(objProduct.id_catalogue))
+                    %>
+                    <option value="<%= child.id %>"><%= child.name %></option>
+                  <% }) %>
+                </select>
+              </div>
+             
+              <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+          </div>
+          
+        </div>
+        <div class="col-12 col-sm-4 col-md-2"></div>
+        <!-- Footer -->
+        <%- include('../inc/bottom') %>     
